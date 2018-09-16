@@ -1,0 +1,4 @@
+{
+  "presets": ["es2015", "mobx"],
+  "plugins": ["transform-decorators-legacy"]
+}

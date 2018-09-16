@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "apges/index/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "小程序",
+    "navigationStyle": "default",
+    "backgroundColor": "#f7f7f7",
+    "backgroundTextStyle": "dark",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 50
+  },
+  "tabBar": [],
+  "networkTimeout": {},
+  "debug": false
+}

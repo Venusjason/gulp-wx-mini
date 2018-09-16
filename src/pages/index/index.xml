@@ -1,0 +1,61 @@
+<!-- 此处会被编译成 ***.json -->
+<config>
+  {
+    "navigationBarTitleText": "这是标题",
+    "usingComponents": {}
+  }
+</config>
+<!-- 此处会被编译成 ***.wxml -->
+<template>
+  <view class="xxx-page">
+  </view>
+</template>
+<!-- 此处会被编译成 ***.js -->
+<script>
+const { observer } = require('./../../libs/observer.js')
+// const { User } =  require('./../../store/index.js')
+
+const pageConfig = observer({
+  props: { // 这里注入store的数据
+    // User
+  },
+  // 组件内部数据
+  data: {},
+  onLoad() {
+    // Do some initialize when page load.
+  },
+  onReady() {
+    // Do something when page ready.
+  },
+  onShow() {
+    // Do something when page show.
+  },
+  onHide() {
+    // Do something when page hide.
+  },
+  onUnload() {
+    // Do something when page close.
+  },
+  onPullDownRefresh() {
+    // Do something when pull down.
+  },
+  onReachBottom() {
+    // Do something when page reach bottom.
+  },
+  onShareAppMessage() {
+    // return custom share data when user share.
+  },
+  onPageScroll() {
+    // Do something when page scroll
+  },
+  onTabItemTap() {
+    // 当前是 tab 页时，点击 tab 时触发
+  },
+  customData: {}
+})
+
+Page(pageConfig)
+</script>
+<!-- 此处会被编译成 ***.wxss -->
+<style lang="less">
+</style>

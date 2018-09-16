@@ -1,0 +1,32 @@
+<!-- 此处会被编译成 ***.json -->
+<config>
+{
+  "component": true
+}
+</config>
+<!-- 此处会被编译成 ***.wxml -->
+<template>
+  <view class="xxx-components">
+  </view>
+</template>
+<!-- 此处会被编译成 ***.js -->
+<script>
+Component({
+  behaviors: [],
+  properties: {
+  },
+  data: {
+  },
+  // 生命周期函数
+  created() {},
+  attached() {},
+  ready() {},
+  moved() {},
+  detached() {},
+  methods: {
+  }
+})
+</script>
+<!-- 此处会被编译成 ***.wxss -->
+<style lang="less">
+</style>
