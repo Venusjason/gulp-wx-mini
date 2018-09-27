@@ -47,6 +47,14 @@ $ npm run build
 ##### 2. 文件 => 首选项 => 设置 => `"vetur.validation.template": false`, `files.associations: { "*.xml": "vue" }`
 ##### 3. .xml文件会被vscode识别的vue的高亮配置，可以在单xml文件内书写 .json/.wxml/.wxss/.js文件
 
+### 与vue html代码片段互转
+
+#### 1. 因为小程序基本只有两个标签`view`和`text`,所以请用`div`和`span/em`这几个标签开发vue部分代码，其他特殊标签与小程序无差别使用
+#### 2. 事件`bind:tap`请统一使用`@click`，工具会自动编译成小程序需要的方式
+#### 3. `image`请统一使用`img`，工具会自动编译成小程序需要的方式
+#### 4. css书写时请不要使用标签选择器，正确的做法是每一个标签都有对应的class
+#### 5. 将vue代码复制到小程序、或者小程序代码复制到vue，都需要针对两个端的差异做特殊处理，需要开发者手动处理
+
 ### 工程结构
 ```
 wx-miniprogram-boilerplate
