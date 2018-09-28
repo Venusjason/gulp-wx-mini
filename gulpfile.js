@@ -66,7 +66,7 @@ const plugins = gulpLoadPlugins()
 const srcPath = './src/**';
 const distPath = './dist/';
 const wxmlFiles = [`${srcPath}/*.wxml`, `!${srcPath}/_template/*.wxml`];
-const htmlFiles = [`${srcPath}/*.xml`, `!${srcPath}/_template/*.xml`];
+const xmlFiles = [`${srcPath}/*.xml`, `!${srcPath}/_template/*.xml`];
 const lessFiles = [
   `${srcPath}/*.less`,
   `!${srcPath}/styles/**/*.less`,
@@ -182,8 +182,8 @@ gulp.task(wxss);
 // }
 
 /* 编译html文件 */
-const html = () => {
-  return gulp.src(htmlFiles)
+const xml = () => {
+  return gulp.src(xmlFiles)
     .pipe(plugins.changed(distPath, {extension:'.js'}))
     .pipe(plugins.debug({title: '编译:'}))
     .pipe(plugins.replace('//CDN', `${assetsPath}`)) // 自动替换静态资源路径 //CDN
@@ -241,7 +241,7 @@ const html = () => {
       config: (stream) => stream.pipe(plugins.logger({ showChange: true })).pipe(gulp.dest(distPath)),
     }))
 };
-gulp.task(html);
+gulp.task(xml);
 
 /* 编译压缩图片 */
 const img = () => {
@@ -255,14 +255,14 @@ gulp.task(img);
 /* build */
 gulp.task(
   'build',
-  gulp.series('clean', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'html', 'img'))
+  gulp.series('clean', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'xml', 'img'))
 );
 
 /* watch */
 gulp.task('watch', () => {
   gulp.watch(lessFiles, wxss);
   gulp.watch(jsFiles, js);
-  gulp.watch(htmlFiles, html);
+  gulp.watch(xmlFiles, xml);
   gulp.watch(jsonFiles, json);
   gulp.watch(wxmlFiles, wxml);
   gulp.watch(imgFiles, img);

@@ -11,7 +11,7 @@
     <icon></icon>
     <input />
     <div class="div">div标签</div>
-    <p class="p" :name="name" :age="age">p</p>
+    <p class="p" :name="name" :age="age" class="{{isOk ? 'ok' : 'hah'}} ppp">p</p>
     <div class="div">div标签
       <p class="p" @click="click">p
         <span class="div span">
