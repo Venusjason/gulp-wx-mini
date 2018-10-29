@@ -7,22 +7,8 @@
 </config>
 <!-- 此处会被编译成 ***.wxml -->
 <template>
-  <div class="index-page">
-    <!-- 哈哈哈哈 -->
-    <icon></icon>
-    <input />
-    <div class="div">div标签</div>
-    <p :class="[isOk ? 'q' : 'p']" :name="name" :age="age">p</p>
-    <div class="div">div标签
-      <p class="p" @click="click">p
-        <span class="div span">
-          <em class="hjh" wx:for="{{items}}" wx:key="name">iii的标签</em>
-          <em class="em">yuiyiiiii</em>
-        </span>
-      </p>
-    </div>
-    <style>style</style>
-    <img :src="src" />
+  <view class="xxx-page">
+    <view name="{{name}}" bindtap="onTap"></view>
   </view>
 </template>
 <!-- 此处会被编译成 ***.js -->
@@ -30,16 +16,14 @@
 const { observer } = require('./../../libs/observer.js')
 // const { User } =  require('./../../store/index.js')
 
-const query = {} // url上的 query 参数
 const pageConfig = observer({
   props: { // 这里注入store的数据
     // User
   },
   // 组件内部数据
   data: {},
-  onLoad(opt) {
+  onLoad() {
     // Do some initialize when page load.
-    Object.assign(query, opt)
   },
   onReady() {
     // Do something when page ready.

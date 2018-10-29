@@ -15,6 +15,8 @@ const appConfig = require('./src/app.config.js');
 var os = require('os');
 var ip = showObj(os.networkInterfaces());
 
+const replaceHtml = require('./templete2wxml.js')
+
 function showObj(obj){
   for(var devName in obj){
     var iface = obj[devName];
@@ -27,38 +29,7 @@ function showObj(obj){
   }
 }
 
-// html vue转化小程序的wxml
-function replaceHtml(str) {
-  let newStr = str.replace('//CDN', `${assetsPath}`)
-    .replace('@click', 'bind:tap')
-    .replace(/<(div|p)/g, '<view')
-    .replace(/<\/[^>]*(div|p)>/g, '</view>')
-    .replace(/<(span|em)/g, '<text')
-    .replace(/<\/[^>]*(span|em)>/g, '</text>')
-  const reg1 = /\:.*?\=".*?\"/g
-  let result = []
-  let arr = newStr.match(reg1)
-  if (!arr) return newStr
-  arr.forEach((ele, i) => {
-    let index = newStr.indexOf(ele)
-    let strArr = [newStr.slice(0, index), newStr.slice(index + ele.length)]
-    let newEle = ele.replace(':', '')
-    let newEleArr = newEle.split('')
-    let a = newEleArr.indexOf('"')
-    let b = newEleArr.lastIndexOf('"')
-    newEleArr[a] = '"{{'
-    newEleArr[b] = '}}"'
-    newEle = newEleArr.join('')
 
-    result.push(strArr[0], newEle)
-    newStr = strArr[1]
-    if (i === arr.length - 1 && newStr !== '') {
-      result.push(newStr)
-    }
-  })
-  newStr = result.join('')
-  return newStr
-}
 
 const gulpLoadPlugins = require('gulp-load-plugins')
 const plugins = gulpLoadPlugins()
@@ -187,12 +158,6 @@ const xml = () => {
     .pipe(plugins.changed(distPath, {extension:'.js'}))
     .pipe(plugins.debug({title: '编译:'}))
     .pipe(plugins.replace('//CDN', `${assetsPath}`)) // 自动替换静态资源路径 //CDN
-    .pipe(plugins.data(function(file) {
-      // console.log(String(file.contents))
-      const htmlStr = String(file.contents)
-      file.contents = new Buffer(replaceHtml(htmlStr))
-      return file
-    }))
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(mina({
@@ -216,6 +181,12 @@ const xml = () => {
         .pipe(urlPrefixer.html({
           prefix: assetsPath,
           tags: ['image']
+        }))
+        .pipe(plugins.data(function(file) {
+          // console.log(String(file.contents))
+          const htmlStr = String(file.contents)
+          file.contents = new Buffer(replaceHtml(htmlStr))
+          return file
         }))
         .pipe(plugins.if(isProduction, plugins.htmlmin({
           collapseWhitespace: true,

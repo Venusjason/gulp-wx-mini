@@ -55,6 +55,17 @@ $ npm run build
 #### 4. css书写时请不要使用标签选择器，正确的做法是每一个标签都有对应的class,暂不支持vue的动态class编译到小程序，需要手动处理差异
 #### 5. 将vue代码复制到小程序、或者小程序代码复制到vue，都需要针对两个端的差异做特殊处理，需要开发者手动处理
 
+#### 6. 如果wxml的原生写法，转换器不会做任何转换,but 不要使用`bind:tap`类的写法，please `bindtap`
+
+| vue   |      wxml      |  是否支持 | 备注 |
+|----------|:-------------:|------:|------:|
+| :name="name"   | name="{{name}}" | Y |  |
+| @click="onHandler" | bindtap="onHandler" | Y |  |
+| v-for="list"   | wx:for="{{list}}" | N(待支持) | 不支持item,index定义 v-for="(item, i) in list" |
+| v-if="isShow" | wx:if="{{isShow}}" | N(待支持) | |
+| v-show="isShow" | wx:if="{{isShow}}" | N(待支持) |实际还是 wx:if |
+| :key="key" | wx:key="key" | N(待支持) | |
+
 ### 工程结构
 ```
 wx-miniprogram-boilerplate

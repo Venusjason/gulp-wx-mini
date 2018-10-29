@@ -15,14 +15,16 @@
 const { observer } = require('./../../libs/observer.js')
 // const { User } =  require('./../../store/index.js')
 
+const query = {} // url上的 query 参数
 const pageConfig = observer({
   props: { // 这里注入store的数据
     // User
   },
   // 组件内部数据
   data: {},
-  onLoad() {
+  onLoad(opt) {
     // Do some initialize when page load.
+    Object.assign(query, opt)
   },
   onReady() {
     // Do something when page ready.
